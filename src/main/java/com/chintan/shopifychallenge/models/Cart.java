@@ -27,7 +27,7 @@ public class Cart {
 
   @Id
   @GeneratedValue
-  private String cartId;
+  private Integer cartId;
 
   private List<Product> products;
   private BigDecimal totalCost;
