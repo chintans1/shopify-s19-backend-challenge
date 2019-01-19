@@ -23,8 +23,10 @@ import java.math.BigDecimal;
 public class Product {
   @Id
   @GeneratedValue
-  private String productId;
+  private Integer productId;
 
+  // NOTE: This is not the ID because there are cases where products could have the same title
+  // but not be the same product.
   private String title;
   private BigDecimal price;
   private int inventoryCount;
