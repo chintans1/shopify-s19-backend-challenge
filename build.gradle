@@ -30,8 +30,12 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    // Using Jetty instead of Tomcat for ease of use and having a smaller footprint
     compile("org.springframework.boot:spring-boot-starter-jetty")
 
+    // Dependencies for in-memory database
+    // We can switch out the in-memory H2 Database for Postgres if we want (requires additional environment variables)
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("com.h2database:h2")
 }
 
