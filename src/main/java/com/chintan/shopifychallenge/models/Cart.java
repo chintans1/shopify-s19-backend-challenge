@@ -20,6 +20,7 @@ import java.util.List;
 public class Cart {
   public static final String PRODUCT_NOT_PRESENT_EXCEPTION_MESSAGE =
       "This product is not currently present in the cart";
+  public static final String PRODUCT_ALREADY_IN_CART_EXCEPTION_MESSAGE = "This product is already present in the cart";
 
   @Id
   @GeneratedValue
@@ -32,13 +33,13 @@ public class Cart {
   @Setter(AccessLevel.NONE)
   private BigDecimal totalCost = BigDecimal.ZERO;
 
-  // NOTE: We allow the same product to be in the products list more than once because the customer is allowed to
-  // buy the product with more than 1 quantity.
   public void addProduct(final Product product) {
+    if (products.contains(product)) throw new IllegalArgumentException(PRODUCT_ALREADY_IN_CART_EXCEPTION_MESSAGE);
     this.products.add(product);
     this.totalCost = this.totalCost.add(product.getPrice());
   }
 
+  // FIXME: Future addition would be to allow removal of products that are present in the cart already
   public void removeProduct(final Product product) {
     if (!this.products.contains(product))
       throw new IllegalArgumentException(PRODUCT_NOT_PRESENT_EXCEPTION_MESSAGE);
