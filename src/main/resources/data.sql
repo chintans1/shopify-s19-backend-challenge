@@ -1,0 +1,8 @@
+INSERT INTO product (product_id, title, price, inventory_count) VALUES (1, 'USB Cable', '3.99', '10')
+INSERT INTO product (product_id, title, price, inventory_count) VALUES (2, 'Lightning Headphones', '5.99', '4')
+INSERT INTO product (product_id, title, price, inventory_count) VALUES (3, 'USBC Cable', '10.99', '10')
+INSERT INTO product (product_id, title, price, inventory_count) VALUES (4, 'Pepsi Can 250mL', '2.50', '5')
+INSERT INTO product (product_id, title, price, inventory_count) VALUES (5, 'KitKat Chocolate Bar', '0.99', '1')
+INSERT INTO product (product_id, title, price, inventory_count) VALUES (6, 'Jolly Rancher', '0.25', '2')
+INSERT INTO product (product_id, title, price, inventory_count) VALUES (7, 'Lightning Cable', '5.00', '0')
+INSERT INTO product (product_id, title, price, inventory_count) VALUES (8, 'Lightning Cable', '2.00', '2')
