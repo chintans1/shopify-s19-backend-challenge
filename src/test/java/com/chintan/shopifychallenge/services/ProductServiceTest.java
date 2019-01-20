@@ -45,6 +45,19 @@ public class ProductServiceTest {
   }
 
   @Test
+  public void getAllInStockProducts_happypath() {
+    final Product outOfStockProduct = new Product(4, "product4", new BigDecimal(1.00), 0);
+    final List<Product> mergedProducts = Lists.newArrayList(allProducts);
+    mergedProducts.add(outOfStockProduct);
+
+    when(mockProductRepository.findAll()).thenReturn(mergedProducts);
+
+    final List<Product> actualProducts = productService.getAllInStockProducts();
+
+    assertThat(actualProducts).containsExactlyInAnyOrderElementsOf(allProducts);
+  }
+
+  @Test
   public void getProductsByTitle_happypath() {
     final String sameTitle = "Same Title";
     final Product sameTitleProductOne = new Product(1, sameTitle, new BigDecimal(3.99), 1);

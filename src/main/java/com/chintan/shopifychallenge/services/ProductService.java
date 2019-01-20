@@ -22,6 +22,13 @@ public class ProductService {
     return productRepository.findAll();
   }
 
+  public List<Product> getAllInStockProducts() {
+    return productRepository.findAll()
+        .stream()
+        .filter(Product::inStock)
+        .collect(Collectors.toList());
+  }
+
   public List<Product> getProductsByTitle(final String productTitle) {
     return productRepository.findAll()
         .stream()

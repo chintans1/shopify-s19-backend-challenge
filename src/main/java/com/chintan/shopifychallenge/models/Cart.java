@@ -2,10 +2,7 @@ package com.chintan.shopifychallenge.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +25,12 @@ public class Cart {
   @GeneratedValue
   private Integer cartId;
 
-  @Setter(AccessLevel.NONE) private List<Product> products = new ArrayList<>();
-  @Setter(AccessLevel.NONE) private BigDecimal totalCost = BigDecimal.ZERO;
+  @Setter(AccessLevel.NONE)
+  @ElementCollection(targetClass=Product.class)
+  private List<Product> products = new ArrayList<>();
+
+  @Setter(AccessLevel.NONE)
+  private BigDecimal totalCost = BigDecimal.ZERO;
 
   // NOTE: We allow the same product to be in the products list more than once because the customer is allowed to
   // buy the product with more than 1 quantity.

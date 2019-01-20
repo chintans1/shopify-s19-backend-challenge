@@ -33,6 +33,10 @@ public class Product {
   private BigDecimal price;
   private int inventoryCount;
 
+  public boolean inStock() {
+    return this.inventoryCount > 0;
+  }
+
   public void buyProduct() {
     if (this.inventoryCount == 0) throw new IllegalStateException(STOCK_RUN_OUT_EXCEPTION_MESSAGE);
     this.inventoryCount--;
