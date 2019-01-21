@@ -59,9 +59,9 @@ public class CartServiceTest {
     final int expectedCartID = 2;
     when(mockCartRepository.findById(expectedCartID)).thenReturn(Optional.of(emptyCart));
 
-    cartService.addNewProductsToCart(expectedCartID, productOne, productTwo);
+    cartService.addNewProductsToCart(expectedCartID, productOne);
 
-    final Cart expectedCart = new Cart(null, productsList, new BigDecimal(3.00));
+    final Cart expectedCart = new Cart(null, Lists.newArrayList(productOne), new BigDecimal(1.00));
     verify(mockCartRepository).save(expectedCart);
   }
 

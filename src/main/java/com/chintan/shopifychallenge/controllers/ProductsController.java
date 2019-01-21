@@ -46,7 +46,6 @@ public class ProductsController {
     Optional<Product> singleProduct = productService.getProductById(productId);
 
     if (!singleProduct.isPresent()) throw new IllegalArgumentException(PRODUCT_DOES_NOT_EXIST_ERROR_MESSAGE);
-
     return singleProduct.get();
   }
 }

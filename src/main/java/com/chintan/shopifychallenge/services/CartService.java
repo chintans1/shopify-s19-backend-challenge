@@ -7,7 +7,6 @@ import com.chintan.shopifychallenge.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +24,10 @@ public class CartService {
     this.cartRepository = cartRepository;
   }
 
+  public Optional<Cart> viewCart(final Integer cartId) {
+    return cartRepository.findById(cartId);
+  }
+
   public Cart createNewCart() {
     return createNewCart(Collections.emptyList());
   }
@@ -36,9 +39,9 @@ public class CartService {
     return cartRepository.save(newCart);
   }
 
-  public Cart addNewProductsToCart(final Integer cartId, Product... productsToAdd) {
+  public Cart addNewProductsToCart(final Integer cartId, final Product productToAdd) {
     final Cart existingCart = getCartIfItExists(cartId);
-    Arrays.stream(productsToAdd).forEach(existingCart::addProduct);
+    existingCart.addProduct(productToAdd);
 
     return cartRepository.save(existingCart);
   }
