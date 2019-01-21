@@ -1,5 +1,5 @@
 # Summer 2019 Shopify Developer Challenge
-#### This project is deployed here: [add later]()
+#### This project is deployed here: [https://chintan-shopify-marketplace.herokuapp.com/](https://chintan-shopify-marketplace.herokuapp.com/)
 
 ## API Descriptions
 ### Products (`/products`)
@@ -173,8 +173,15 @@ You may see that in-code comments may be missing but I try not to explain all my
 
 I am using Spring to preload the database on application start with products so it can be added to new carts and/or queried. You can find the script where I load the database [here](/src/main/resources/data.sql).
 
+#### Branching Strategy
+My branching strategy is very similar to [Git Flow](https://gitversion.readthedocs.io/en/latest/git-branching-strategies/gitflow-examples/).
+
+The deployed application on Heroku uses the `master` branch codebase and all feature branches are merged into `develop`. Once it is release time, `develop` is merged into `master` and deployed.
+
 ## Points of Improvement
+- Package exceptions thrown into a wrapper so the caller can clearly see the reason why their API call failed
 - Allow the creation of products instead of solely relying on the initial load of products
 - Introduce an authentication system where each user gets one shopping cart to add their products to and complete their purchase
 - Allow for the removal of products from a cart once added
 - Integrate the project with [Swagger UI](http://springfox.github.io/springfox/) for easy access to the endpoints to help in the development process
+    - can view progress on this in my feature branch [here](https://github.com/chintans1/shopify-s19-backend-challenge/tree/feature/integrate-with-swagger)
