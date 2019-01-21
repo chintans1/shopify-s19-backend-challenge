@@ -45,6 +45,7 @@ public class CartsController {
         .map(productService::getProductById)
         .filter(Optional::isPresent) // Filter out all products that do not exist
         .map(Optional::get)
+        .filter(Product::inStock) // Filter out all products that are not in-stock
         .collect(Collectors.toList());
 
     return cartService.createNewCart(productsInCart);
