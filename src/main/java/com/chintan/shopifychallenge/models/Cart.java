@@ -1,5 +1,6 @@
 package com.chintan.shopifychallenge.models;
 
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,6 +18,8 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "cart")
+@ApiModel(description = "Represents a cart in the marketplace and each cart can have a list of products that they want to purchase" +
+                        "along with the summed up cost of all those products.")
 public class Cart {
   public static final String PRODUCT_NOT_PRESENT_EXCEPTION_MESSAGE =
       "This product is not currently present in the cart";

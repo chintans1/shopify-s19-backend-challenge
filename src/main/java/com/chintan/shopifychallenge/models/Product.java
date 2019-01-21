@@ -1,5 +1,6 @@
 package com.chintan.shopifychallenge.models;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity
 @Table(name = "product")
+@ApiModel(description = "Represents a product in the marketplace where each product has a title, cost and stock level.")
 public class Product {
   public static final String STOCK_RUN_OUT_EXCEPTION_MESSAGE = "This product cannot be purchased since stock has run out.";
 
