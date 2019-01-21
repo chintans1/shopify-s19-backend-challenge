@@ -63,7 +63,7 @@ public class CartsControllerTest {
   public void createCart_happypath() {
     when(mockCartService.createNewCart()).thenReturn(emptyCart);
 
-    assertThat(cartsController.createCart()).isEqualTo(emptyCart);
+    assertThat(cartsController.createCart(null)).isEqualTo(emptyCart);
     verifyNoMoreInteractions(mockCartService, mockProductService);
   }
 

@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -36,12 +37,9 @@ public class CartsController {
   }
 
   @PostMapping
-  public Cart createCart() {
-    return cartService.createNewCart();
-  }
+  public Cart createCart(@RequestBody(required = false) CreateCart createCart) {
+    if (Objects.isNull(createCart)) return cartService.createNewCart();
 
-  @PostMapping
-  public Cart createCart(@RequestBody CreateCart createCart) {
     List<Product> productsInCart = createCart.getProductIds()
         .stream()
         .map(productService::getProductById)
@@ -52,7 +50,7 @@ public class CartsController {
     return cartService.createNewCart(productsInCart);
   }
 
-  @PostMapping("{cartId}/products/{productId}")
+  @PutMapping("{cartId}/products/{productId}")
   public Cart addProductToCart(@PathVariable final Integer cartId, @PathVariable final Integer productId) {
     final Optional<Product> productToAdd = productService.getProductById(productId);
     if (!productToAdd.isPresent()) throw new IllegalArgumentException(ProductsController.PRODUCT_DOES_NOT_EXIST_ERROR_MESSAGE);

@@ -75,6 +75,17 @@ public class CartServiceTest {
   }
 
   @Test
+  public void addNewProductsToCart_throws_exception_when_same_product_is_added() {
+    final int expectedCartID = 2;
+    final Cart initialCart = new Cart(expectedCartID, productsList, new BigDecimal(3.00));
+    when(mockCartRepository.findById(expectedCartID)).thenReturn(Optional.of(initialCart));
+
+    assertThatThrownBy(() -> cartService.addNewProductsToCart(expectedCartID, productOne))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining(Cart.PRODUCT_ALREADY_IN_CART_EXCEPTION_MESSAGE);
+  }
+
+  @Test
   public void completeCartPurchase_happypath() {
     final int expectedCartID = 2;
     final Cart initialCart = new Cart(null, productsList, new BigDecimal(3.00));
