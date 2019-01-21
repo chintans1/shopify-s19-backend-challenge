@@ -1,14 +1,10 @@
 package com.chintan.shopifychallenge.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,21 +20,26 @@ import java.util.List;
 public class Cart {
   public static final String PRODUCT_NOT_PRESENT_EXCEPTION_MESSAGE =
       "This product is not currently present in the cart";
+  public static final String PRODUCT_ALREADY_IN_CART_EXCEPTION_MESSAGE = "This product is already present in the cart";
 
   @Id
   @GeneratedValue
-  private String cartId;
+  private Integer cartId;
 
-  private List<Product> products;
-  private BigDecimal totalCost;
+  @Setter(AccessLevel.NONE)
+  @ElementCollection(targetClass=Product.class)
+  private List<Product> products = new ArrayList<>();
 
-  // NOTE: We allow the same product to be in the products list more than once because the customer is allowed to
-  // buy the product with more than 1 quantity.
+  @Setter(AccessLevel.NONE)
+  private BigDecimal totalCost = BigDecimal.ZERO;
+
   public void addProduct(final Product product) {
+    if (products.contains(product)) throw new IllegalArgumentException(PRODUCT_ALREADY_IN_CART_EXCEPTION_MESSAGE);
     this.products.add(product);
     this.totalCost = this.totalCost.add(product.getPrice());
   }
 
+  // FIXME: Future addition would be to allow removal of products that are present in the cart already
   public void removeProduct(final Product product) {
     if (!this.products.contains(product))
       throw new IllegalArgumentException(PRODUCT_NOT_PRESENT_EXCEPTION_MESSAGE);
