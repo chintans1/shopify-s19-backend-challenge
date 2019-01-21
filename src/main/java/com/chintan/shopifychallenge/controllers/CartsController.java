@@ -54,6 +54,7 @@ public class CartsController {
   public Cart addProductToCart(@PathVariable final Integer cartId, @PathVariable final Integer productId) {
     final Optional<Product> productToAdd = productService.getProductById(productId);
     if (!productToAdd.isPresent()) throw new IllegalArgumentException(ProductsController.PRODUCT_DOES_NOT_EXIST_ERROR_MESSAGE);
+    if (!productToAdd.get().inStock()) throw new IllegalArgumentException(Product.STOCK_RUN_OUT_EXCEPTION_MESSAGE);
 
     return cartService.addNewProductsToCart(cartId, productToAdd.get());
   }

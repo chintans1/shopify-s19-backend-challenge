@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "product")
 public class Product {
-  public static final String STOCK_RUN_OUT_EXCEPTION_MESSAGE = "This product cannot be purchased since stock has run out.";
+  public static final String STOCK_RUN_OUT_EXCEPTION_MESSAGE = "This product cannot be added to cart/purchased since stock has run out.";
 
   @Id
   @GeneratedValue

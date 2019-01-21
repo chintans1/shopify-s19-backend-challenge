@@ -108,6 +108,16 @@ public class CartsControllerTest {
   }
 
   @Test
+  public void addProductToCart_throws_exception_when_product_is_out_of_stock() {
+    final Product outOfStockProduct = new Product(productId, "out of stock", BigDecimal.ONE, 0);
+    when(mockProductService.getProductById(anyInt())).thenReturn(Optional.of(outOfStockProduct));
+
+    assertThatThrownBy(() -> cartsController.addProductToCart(cartId, productId))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining(Product.STOCK_RUN_OUT_EXCEPTION_MESSAGE);
+  }
+
+  @Test
   public void addProductToCart_throws_exception_when_cart_is_nonexistent() {
     final RuntimeException expectedException = new RuntimeException();
 
