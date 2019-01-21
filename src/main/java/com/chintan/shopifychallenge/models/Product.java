@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
@@ -21,7 +18,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "product")
 public class Product {
-  public static final String STOCK_RUN_OUT_EXCEPTION_MESSAGE = "This product cannot be purchased since stock has run out.";
+  public static final String STOCK_RUN_OUT_EXCEPTION_MESSAGE = "This product cannot be added to cart/purchased since stock has run out.";
 
   @Id
   @GeneratedValue
