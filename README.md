@@ -1,7 +1,9 @@
 # Summer 2019 Shopify Developer Challenge
 #### This project is deployed here: [https://chintan-shopify-marketplace.herokuapp.com/](https://chintan-shopify-marketplace.herokuapp.com/)
 
-## API Descriptions
+## API Description
+### Background
+In this marketplace, you will find multiple products that are available for purchase. Products can be purchased only if they are present in your shopping cart. You can not add out-of-stock products to your existing cart and you also can not complete the order with out-of-stock products existing in your cart. Your cart will show you the total cost of all the items you have.
 ### Products (`/products`)
 Endpoints for fetching all products, fetching in-stock products or fetching specific products using title or ID.
 #### View all products
