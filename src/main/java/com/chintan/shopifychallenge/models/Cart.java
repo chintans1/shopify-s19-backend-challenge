@@ -27,7 +27,7 @@ public class Cart {
   private Integer cartId;
 
   @Setter(AccessLevel.NONE)
-  @ElementCollection(targetClass=Product.class)
+  @ManyToMany
   private List<Product> products = new ArrayList<>();
 
   @Setter(AccessLevel.NONE)
